@@ -1,0 +1,71 @@
+<?php
+/**
+ * Catalog price request template
+ *
+ * @var PriceRequest\Catalog\Rewrite\Block\Request $block
+ */
+?>
+<button type="submit" class="action submit primary" id="price_request_button">
+    <span><?= /* @escapeNotVerified */ $block->escapeHtml(__('Price Requests')); ?></span>
+</button>
+
+<div id="price-request-popup-modal" class="no-display">
+    <form class="control"
+          method="POST"
+          action="<?= $block->getUrl('catalog/request/index'); ?>"
+          id="request_price"
+          data-hasrequired="<?= $block->escapeHtmlAttr(__('* Required Fields')); ?>"
+          data-mage-init='{"validation":{}}'>
+        <fieldset class="fieldset">
+            <input class="no-display"
+                   name="product_sku"
+                   id="product_sku"
+                   title="<?= $block->escapeHtmlAttr(__('Product sku')); ?>"
+                   value="<?= $block->getProductSku();?>">
+            <div class="field name required">
+                <label class="label" for="name"><span><?= $block->escapeHtml(__('Name')); ?></span></label>
+                <div class="control">
+                    <input name="customer_name"
+                           id="customer_name"
+                           title="<?= $block->escapeHtmlAttr(__('Name')); ?>"
+                           class="input-text"
+                           type="text"
+                           value="<?= $block->getCustomerName(); ?>"
+                           data-validate="{required:true}"/>
+                </div>
+            </div>
+            <div class="field email required">
+                <label class="label" for="email"><span><?= $block->escapeHtml(__('Email')); ?></span></label>
+                <div class="control">
+                    <input name="customer_email"
+                           id="customer_email"
+                           title="<?= $block->escapeHtmlAttr(__('Email')); ?>"
+                           class="input-text"
+                           type="email"
+                           value="<?= $block->getCustomerEmail(); ?>"
+                           data-validate="{required:true, 'validate-email':true}"/>
+                </div>
+            </div>
+            <div class="field comment required">
+                <label class="label" for="comment"><span><?= $block->escapeHtml(__('Comment')); ?></span></label>
+                <div class="control">
+                    <textarea name="request_content"
+                              id="request_content"
+                              title="<?= $block->escapeHtmlAttr(__('Comment')); ?>"
+                              class="input-text"
+                              cols="5"
+                              rows="3"
+                              data-validate="{required:true}">
+                    </textarea>
+                </div>
+            </div>
+        </fieldset>
+    </form>
+</div>
+<script type="text/x-magento-init">
+    {
+        "*": {
+            "PriceRequest_Catalog/js/priceRequests": {}
+        }
+    }
+</script>

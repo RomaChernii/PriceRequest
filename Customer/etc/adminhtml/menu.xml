@@ -1,0 +1,16 @@
+<?xml version="1.0"?>
+<!--
+/**
+ * PriceRequest Customer menu
+-->
+<config xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="urn:magento:module:Magento_Backend:etc/menu.xsd">
+    <menu>
+        <add id="PriceRequest_Customer::request"
+             title="Price Request"
+             module="PriceRequest_Customer"
+             sortOrder="30"
+             parent="Magento_Customer::customer"
+             action="customer/request"
+             resource="Magento_Customer::customer" />
+    </menu>
+</config>
